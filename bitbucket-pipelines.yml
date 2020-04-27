@@ -28,6 +28,7 @@ pipelines:
                 S3_BUCKET: 'whitecloud-aws'
                 LOCAL_PATH: 'dist'
                 DELET_FLAG: 'true'
+                ACL: 'public-read'
     master:
       - step:
           name: Building
@@ -49,3 +50,4 @@ pipelines:
                 S3_BUCKET: 'whitecloud-aws'
                 LOCAL_PATH: 'dist'
                 DELET_FLAG: 'true'
+                ACL: 'public-read'
