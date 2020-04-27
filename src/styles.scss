@@ -1,4 +1,105 @@
-/* Estilos generales */
-h1 {
-    color: yellow;
+//Responsive sizes
+$size_xs: 480px;
+$size_sm: 768px;
+$size_md: 992px;
+$size_lg: 1080px;
+
+//Colors
+$black: #000;
+$white: #fff;
+$blue: #050b1e;
+$blueDemon: linear-gradient(to right, rgba(15,15,59,1) 0%, rgba(5,11,30,1) 100%);
+$blueLight: #0092ff;
+
+//Styles
+@import './styles/header';
+@import './styles/main';
+@import './styles/footer';
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web&display=swap');
+
+* {
+  color: $white;
+}
+body {
+  background: $white;
+  font-size: 16px;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+h1 { font-size: 1.5em }
+h2 { font-size: 1.4em }
+h3 { font-size: 1.3em }
+h4 { font-size: 1.2em }
+h5 { font-size: 1.1em }
+p { font-size: 1em }
+ul { list-style: none; }
+a { text-decoration: none !important; }
+
+input, textarea {
+  background-color: rgba($blueLight, 0.3) !important;
+  border-color: transparent !important;
+  color: $white !important;
+  &::placeholder {
+    color: $white !important;
+  }
+  &:focus {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0), 0 0 8px rgba(102, 175, 233, 0.16) !important;
+  }
+}
+
+.btn {
+  border-radius: 10px;
+	background-color: $white;
+	font-weight: bold;
+	&-link {
+    color: $black !important;
+    padding: 10px;
+    width: 140px;
+    transition: 0.2s cubic-bezier(.41,.48,.85,.6);
+    &:hover {
+      background-color: transparent;
+      border: 1px solid $white;
+      color: $white !important;
+      border-radius: 0;
+    }
+  }
+	&-default {
+    color: #0066bd;
+    padding: 10px 30px;
+    border-radius: 17px;
+    box-shadow: 0 6px #0066bd;
+    &:hover {
+      color: #0066bd;
+      background-color: $white;
+      border-color: transparent !important ;
+    }
+    &:active {
+      color: $blueLight !important;
+      background-color: $white !important;
+      border-color: transparent !important;
+      box-shadow: 0 #04579e;
+      transform: translateY(4px);
+    }
+  }
+	&-primary {
+    background-color: $blue;
+		border-color: transparent;
+		&:hover {
+      background-color: $blueLight;
+    }
+  }
+}
+
+.box {
+  &-demon {
+    background: $blueDemon;
+  }
+  &-light {
+    background-color: $blueLight;
+  }
+}
+
+.title-default {
+  font-size: 1.8em;
+	text-align: center;
 }

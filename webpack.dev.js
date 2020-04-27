@@ -6,9 +6,8 @@ const { CleanWebpackPlugin }    = require('clean-webpack-plugin');
 module.exports = {
     mode: 'development',
     entry: {
-        main: ['@babel/polyfill', './src/main.js'],
-        // main: './src/main.js',
-        thirdparty: './src/thirdparty.js'
+        thirdparty: './src/thirdparty.js',
+        main: ['@babel/polyfill', './src/main.js']
     },
     output: {
         filename: '[name].js',
@@ -61,7 +60,8 @@ module.exports = {
                         loader: 'postcss-loader', // Run post css actions
                         options: {
                             // post css plugins, can be exported to postcss.config.js
-                            plugins: () => ( [ require('precss'), require('autoprefixer') ] )
+                            plugins: () => ( [ require('precss'), require('autoprefixer') ] ),
+                            sourceMap: true
                         }
                     },
                     'sass-loader'
@@ -94,7 +94,8 @@ module.exports = {
             }
         ]),
         new HtmlWebpackPlugin({
-            template: './src/index.hbs'
+            filename: 'index.html',
+            template: './src/templates/index.hbs'
         }),
         new CleanWebpackPlugin(),
     ]

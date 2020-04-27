@@ -7,9 +7,8 @@ const { CleanWebpackPlugin }    = require('clean-webpack-plugin');
 module.exports = {
     mode: 'production',
     entry: {
-        main: ['@babel/polyfill', './src/main.js'],
-        // main: './src/main.js',
-        thirdparty: './src/thirdparty.js'
+        thirdparty: './src/thirdparty.js',
+        main: ['@babel/polyfill', './src/main.js']
     },
     output: {
         filename: '[name].[contenthash].js',
@@ -79,7 +78,8 @@ module.exports = {
             ignoreOrder: false,
         }),
         new HtmlWebpackPlugin({
-            template: './src/index.hbs'
+            filename: 'index.html',
+            template: './src/templates/index.hbs'
         }),
         new CleanWebpackPlugin()
     ]

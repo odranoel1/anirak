@@ -1,41 +1,24 @@
-const extractThirdParty = async () => {
+/*=== Custom Javascript === */
+import { AnimationPage } from '../components/AnimationPage';
+import { AnimationObserver } from '../components/AnimationObserver';
+import { RegisterForm } from '../components/RegisterForm';
 
-    const element = document.createElement('div');
+let animation = new AnimationPage();
+let observer = new AnimationObserver();
+let registerForm = new RegisterForm();
 
-    // Module name
-    const { default:_ } = await import(/* webpackChunkName: "lodash" */ 'lodash');
-
-    element.innerHTML = _.join(['Hola desde', 'lodash'], '-');
-
-    document.body.appendChild( element );
-}
-
-const getModule = () => {
-
-    const element = document.createElement('div');
-    const btn = document.createElement('button');
-
-    btn.innerHTML = 'Enable lazy loading';
-    element.appendChild( btn );
-
-    btn.onclick = e => import(/* webpackChunkName: "profile-module" */ './profile-module').then(module => {
-        
-        const test = module.default;
-
-    });
-
-    document.body.appendChild( element );
-
-}
-
-
-const appModule = () => {
-    
-    extractThirdParty();
-    getModule();
-
-}
-
-export {
-    appModule
+export default () => {
+    animation.clickHamburguer();
+    animation.scrollTop();
+    animation.menuFixed();
+    animation.scrollToSection();
+    animation.toggleServices();
+    animation.hoverServices();
+    observer.services
+    observer.globe
+    observer.companies
+    observer.plans
+    observer.location
+    observer.footerimg
+    registerForm.validateForm();
 }
