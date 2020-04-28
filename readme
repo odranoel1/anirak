@@ -1,0 +1,39 @@
+Registro de Bitbucket
+
+Bitbucket
+============================
+email: leonnxrdx_@hotmail.com 
+user: odranoel1
+pass: bitbuck3t
+link: bitbucket.org/odranoelgm
+============================
+
+go to repo: whitecloud-landing
+
+
+Install Nodejs
+https://nodejs.org/es/
+
+
+
+Install git
+git clone http.....
+
+cd folder_name
+
+npm install 
+npm run server
+
+install mongo db
+https://www.mongodb.com/es
+
+npm install -g @angular/cli
+ng new my-dream-app
+cd my-dream-app
+ng serve
+
+
+============================================
+Software recomendado:
+                        Sourcetree
+============================================
