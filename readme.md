@@ -60,6 +60,7 @@ git flow feature finish name_feature
 
 ## Obteniendo los últimos cambios del proyecto release ⚙️
 _Agregamos el repositorio release y obtenemos los cambios con pull_
+
 _Es importante revisar que ya tengamos cerrado nuestro feature y que estemos en la rama develop_
 ```
 git branch
