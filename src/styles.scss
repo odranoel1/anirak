@@ -8,14 +8,17 @@ $size_lg: 1080px;
 $black: #000;
 $white: #fff;
 $blue: #050b1e;
-$blueDemon: linear-gradient(to right, rgba(15,15,59,1) 0%, rgba(5,11,30,1) 100%);
-$blueLight: #0092ff;
+// $blueDemon: linear-gradient(to right, rgba(15,15,59,1) 0%, rgba(5,11,30,1) 100%);
+// $blueLight: #0092ff;
+
+$blueLight: #5580e9;
+$blueDemon: #25274d;
 
 //Styles
-@import './styles/header';
-@import './styles/main';
-@import './styles/footer';
-@import url('https://fonts.googleapis.com/css?family=Titillium+Web&display=swap');
+@import "./styles/header";
+@import "./styles/main";
+@import "./styles/footer";
+@import url("https://fonts.googleapis.com/css?family=Titillium+Web&display=swap");
 
 * {
   color: $white;
@@ -23,20 +26,37 @@ $blueLight: #0092ff;
 body {
   background: $white;
   font-size: 16px;
-  font-family: 'Titillium Web', sans-serif;
+  font-family: "Titillium Web", sans-serif;
 }
 
-h1 { font-size: 1.5em }
-h2 { font-size: 1.4em }
-h3 { font-size: 1.3em }
-h4 { font-size: 1.2em }
-h5 { font-size: 1.1em }
-p { font-size: 1em }
-ul { list-style: none; }
-a { text-decoration: none !important; }
+h1 {
+  font-size: 1.5em;
+}
+h2 {
+  font-size: 1.4em;
+}
+h3 {
+  font-size: 1.3em;
+}
+h4 {
+  font-size: 1.2em;
+}
+h5 {
+  font-size: 1.1em;
+}
+p {
+  font-size: 1em;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none !important;
+}
 
-input, textarea {
-  background-color: rgba($blueLight, 0.3) !important;
+input,
+textarea {
+  background-color: $blue !important;
   border-color: transparent !important;
   color: $white !important;
   &::placeholder {
@@ -49,13 +69,13 @@ input, textarea {
 
 .btn {
   border-radius: 10px;
-	background-color: $white;
-	font-weight: bold;
-	&-link {
+  background-color: $white;
+  font-weight: bold;
+  &-link {
     color: $black !important;
     padding: 10px;
     width: 140px;
-    transition: 0.2s cubic-bezier(.41,.48,.85,.6);
+    transition: 0.2s cubic-bezier(0.41, 0.48, 0.85, 0.6);
     &:hover {
       background-color: transparent;
       border: 1px solid $white;
@@ -63,8 +83,8 @@ input, textarea {
       border-radius: 0;
     }
   }
-	&-default {
-    color: #0066bd;
+  &-default {
+    color: #0066bd !important;
     padding: 10px 30px;
     border-radius: 17px;
     box-shadow: 0 6px #0066bd;
@@ -81,11 +101,18 @@ input, textarea {
       transform: translateY(4px);
     }
   }
-	&-primary {
+  &-primary {
     background-color: $blue;
-		border-color: transparent;
-		&:hover {
+    border-color: transparent;
+    &:hover {
       background-color: $blueLight;
+    }
+  }
+  &-icon {
+    border: none;
+    background-color: transparent;
+    &:focus {
+      outline: none;
     }
   }
 }
@@ -101,5 +128,37 @@ input, textarea {
 
 .title-default {
   font-size: 1.8em;
-	text-align: center;
+  text-align: center;
+}
+
+.swiper {
+  width: 350px;
+  height: 100%;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 450px;
+  @media only screen and (max-width: $size_sm) {
+    width: 90%;
+    margin: auto;
+  }
+}
+
+.fa-check {
+  color: blue;
+}
+
+.fa-edit {
+  color: orange;
+}
+
+.fa-trash {
+  color: red;
 }

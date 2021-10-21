@@ -1,5 +1,3 @@
-import { createUser } from '../shared/services';
-
 export class RegisterForm {
 
     validateForm() {
@@ -51,15 +49,6 @@ export class RegisterForm {
 
                 const { name, email, phone, company, idea } = values;
                 const userData = { name, email, phone, company, idea };
-
-                createUser(userData)
-                    .then( (resp) => {
-                        console.log({
-                            resp, form
-                        });
-                    })
-                    .catch( console.log );
-
                 // ajax({
                 //     url: 'https://just-validate-api.herokuapp.com/submit',
                 //     method: 'POST',
@@ -72,6 +61,6 @@ export class RegisterForm {
             },
         };
 
-        new JustValidate('#Contact', options);
+        // new JustValidate('#Contact', options);
     }
 }

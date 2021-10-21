@@ -1,13 +1,14 @@
 footer {
-    background-color: #050b1e;
-    color: $white;
-    text-align: center;
-    &>div:first-child {
-      border-top: 6px solid $white;
-      padding-top: 10px;
-    }
-    &>div:last-child a {
-      color: $white;
-    }
+  color: $white;
+  text-align: center;
+  & > div:first-child {
+    border-top: 6px solid $white;
+    padding-top: 10px;
   }
-  
+  & > div:last-child a {
+    color: $white;
+  }
+  .box-light i {
+    color: red;
+  }
+}

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "webpack-dev-server --config webpack.dev.js",
+    "dev": "webpack-dev-server --config webpack.dev.js",
     "build:dev": "webpack --config webpack.dev.js",
     "build:prod": "webpack --config webpack.prod.js"
   },
@@ -49,6 +49,8 @@
     "bootstrap": "^4.4.1",
     "jquery": "^3.4.1",
     "just-validate": "^1.5.0",
-    "popper.js": "^1.16.1"
+    "popper.js": "^1.16.1",
+    "swiper": "^6.0.2",
+    "tiny-slider": "^2.9.3"
   }
 }

@@ -82,15 +82,11 @@ export class AnimationPage {
                     if (tablet_size.matches) {
                         this.toggleMenu('movil');
                     }
-                    
+
                     switch (strAncla) {
                         case "#About":
                             return this.moveScrollTo(strAncla);
-                        case "#Services":
-                            return this.moveScrollTo(strAncla);
-                        case "#StudyCases":
-                            return this.moveScrollTo(strAncla);
-                        case "#Contact":
+                        case "#Months":
                             return this.moveScrollTo(strAncla);
                         case "#Plans":
                             return this.moveScrollTo(strAncla);
@@ -110,7 +106,7 @@ export class AnimationPage {
     toggleServices() { // Show services
         const web_site = this.getServices().item(0);
         const mobile_app = this.getServices().item(1);
-        mobile_app.classList.add('d-none');
+        // mobile_app.classList.add('d-none');
 
         const clickIt = document.querySelectorAll('.click-it');
 

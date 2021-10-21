@@ -3,7 +3,7 @@ export class AnimationObserver {
       this.section3 = document.querySelectorAll('.technologies .item > img'),
       this.section4 = document.querySelectorAll('.globe-img > img'),
       this.section5 = document.querySelectorAll('.companies .item > img'),
-      this.section7 = document.querySelectorAll('#Location img'),
+      this.section7 = document.querySelectorAll('#About img'),
       this.footer = document.querySelectorAll('footer img'),
   
       this.observeElement = (entries, observer) => {
@@ -26,7 +26,7 @@ export class AnimationObserver {
         observer.observe(element);
       });
   
-      this.globe = this.section4.forEach((element) => {
+      this.phrase2 = this.section4.forEach((element) => {
         const observer = new IntersectionObserver(this.observeElement, {
           threshold: 0.5
         });
@@ -40,7 +40,7 @@ export class AnimationObserver {
         observer.observe(element);
       });
   
-      this.location = this.section7.forEach((element) => {
+      this.about = this.section7.forEach((element) => {
         const observer = new IntersectionObserver(this.observeElement, {
           threshold: 0.5
         });

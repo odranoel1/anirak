@@ -40,6 +40,9 @@
     // }
     a {
       color: $white;
+      img {
+        width: 60px;
+      }
     }
   }
 }
@@ -51,20 +54,20 @@
   padding-top: 5px;
   width: 50px;
   height: 50px;
-  z-index: 1;
+  z-index: 9999;
   position: fixed;
   right: 10px;
   top: 90%;
   text-align: center;
   &:hover {
-    background-color: $blue;
+    background-color: $blueDemon;
     transition: 0.2s cubic-bezier(0.41, 0.48, 0.85, 0.6);
   }
   &:hover > i {
     color: $white;
   }
   i {
-    color: $blue;
+    color: $blueDemon;
   }
 }
 

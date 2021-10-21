@@ -2,10 +2,15 @@
 import { AnimationPage } from '../components/AnimationPage';
 import { AnimationObserver } from '../components/AnimationObserver';
 import { RegisterForm } from '../components/RegisterForm';
+import { Relation } from '../components/Relation';
+import TinySlider from '../components/TinySlider';
+import { TaskList } from '../components/TaskList';
 
-let animation = new AnimationPage();
-let observer = new AnimationObserver();
-let registerForm = new RegisterForm();
+const animation = new AnimationPage();
+const observer = new AnimationObserver();
+const registerForm = new RegisterForm();
+const relation = new Relation();
+const taskList = new TaskList();
 
 export default () => {
     animation.clickHamburguer();
@@ -15,10 +20,17 @@ export default () => {
     animation.toggleServices();
     animation.hoverServices();
     observer.services
-    observer.globe
+    observer.phrase2
     observer.companies
     observer.plans
-    observer.location
+    observer.about
     observer.footerimg
     registerForm.validateForm();
+    relation.getMonth();
+    relation.createMonth();
+    relation.getRelationDate();
+    relation.getPictures();
+    TinySlider;
+    taskList.addTask();
+    taskList.actionTask();
 }

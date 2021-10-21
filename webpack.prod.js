@@ -73,6 +73,12 @@ module.exports = {
                 to: 'assets/img'
             }
         ]),
+        new CopyWebpackPlugin([
+            {
+                from: 'src/assets/songs',
+                to: 'assets/songs'
+            }
+        ]),
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css',
             ignoreOrder: false,
