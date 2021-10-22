@@ -93,12 +93,6 @@ module.exports = {
                 to: 'assets/img'
             }
         ]),
-        new CopyWebpackPlugin([
-            {
-                from: 'src/assets/songs',
-                to: 'assets/songs'
-            }
-        ]),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './src/templates/index.hbs'

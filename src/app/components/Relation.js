@@ -38,7 +38,7 @@ export class Relation {
     getPictures() {
         const divCarousel = document.querySelector('#Main .swiper-wrapper');
         const { slider } = data;
-        const images = slider.map(img => `https://anirak.s3.amazonaws.com/${img}`);
+        const images = slider.map(img => `https://anirak.s3.amazonaws.com/data/slider/${img}`);
         images.forEach(img => {
             const appendElement = `
                 <div class="swiper-slide">

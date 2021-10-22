@@ -1,3 +1,5 @@
+import { deleteTask, createTask, editTask } from '../../app/services/tasks';
+
 export class Task {
     constructor(obj) {
         this.id = obj.id ? obj.id : `${new Date().getTime()}`;
@@ -7,7 +9,43 @@ export class Task {
         this.todoList = obj.todoList;
     }
 
-    createTask() {
+    async createTask() {
+        const res = await createTask({
+            id: this.id,
+            desc: this.desc,
+            completed: this.completed,
+            createdAt: this.createdAt,
+        });
+        if (res.success) {
+            this.appendView();
+        }
+    }
+
+    async editTask(target, classTarget) {
+        this.completed = !this.completed;
+        target.setAttribute('disabled', '');
+        const res = await editTask({
+            id: this.id,
+            desc: this.desc,
+            completed: this.completed,
+            createdAt: this.createdAt,
+        });
+        if (res.success) {
+            this.toggleIcon(classTarget);
+        }
+        target.removeAttribute('disabled');
+    }
+
+    async deleteTask(target) {
+        target.setAttribute('disabled', '');
+        const res = await deleteTask(this.id);
+        if (res.success) {
+            this.removeView(target.parentElement);
+        }
+        target.removeAttribute('disabled');
+    }
+
+    appendView() {
         const li = document.createElement('li');
         li.innerHTML = `
             <li data-id="${this.id}">
@@ -19,12 +57,20 @@ export class Task {
         this.todoList.appendChild(li.firstElementChild);
     }
 
-    markCompleted(classTarget) {
-        classTarget.remove('fa-edit');
-        classTarget.add('fa-check');
+    removeView(liElement) {
+        this.todoList.removeChild(liElement);
     }
 
-    deleteTask(liElement) {
-        this.todoList.removeChild(liElement);
+    toggleIcon(classTarget) {
+        if (classTarget.value.includes('fa-check')) {
+            classTarget.remove('fa-check');
+            classTarget.add('fa-edit');
+            return true;
+        }
+        if (classTarget.value.includes('fa-edit')) {
+            classTarget.remove('fa-edit');
+            classTarget.add('fa-check');
+            return true;
+        }
     }
 }

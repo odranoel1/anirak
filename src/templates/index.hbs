@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css">
-  <!--[if (lt IE 9)]><script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.helper.ie8.js"></script><![endif]-->
 
 </head>
 
@@ -42,8 +41,7 @@
           Como una manzana
           Dulce y madurita
         </p>
-        <a class="btn btn-default" onclick="playSong('morenita')">Mi morenita</a>
-        <audio id="song" src="./assets/songs/morenita.mp3"></audio>
+        <a class="btn btn-default" onclick="playSong(event)" data-name="morenita">Mi morenita</a>
       </div>
     </div>
 
@@ -51,8 +49,7 @@
       <div class="col-sm-8 offset-sm-2">
         <h2 class="title-default disanimate prueba"><b>Hermosa</b> Karina</h2><span>Eres mi alma preciosa</span>
         <div class="my-slider phrase"></div>
-        <a class="btn btn-link" onclick="playSong('sone')">Pensando en tí</a>
-        <audio id="song" src="./assets/songs/sone.mp3"></audio>
+        <a class="btn btn-link" onclick="playSong(event)" data-name="sone">Pensando en tí</a>
       </div>
     </div>
 
@@ -75,8 +72,7 @@
             Una vida de amaneceres nunca podría <br>
             compararse con la luz que traes a mi vida
           </p>
-          <a class="btn btn-link mt-3" onclick="playSong('malaguena')">Bonitos ojos</a>
-          <audio id="song" src="./assets/songs/malaguena.mp3"></audio>
+          <a class="btn btn-link mt-3" onclick="playSong(event)" data-name="malaguena">Bonitos ojos</a>
         </div>
       </div>
     </div>

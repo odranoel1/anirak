@@ -1,28 +1,38 @@
 export class Song {
 
-    playAudio(songName) {
-        let songs = document.querySelectorAll('#song');
-        songs.forEach(song => {
-            const cleanedSong = this.cleanAudio(song);
-            if (cleanedSong === songName) {
-                return song.paused ? song.play() : this.stopAudio(song);
-            }
-            // Avoid multiple songs
-            if (!song.paused && cleanedSong !== songName) {
-                return this.stopAudio(song);
+    constructor() {
+    }
+
+    createAudioTag(event) {
+        const songName = event.target.getAttribute('data-name');
+        const audio = document.createElement('audio');
+        audio.id = 'audio-player';
+        audio.src = `https://anirak.s3.amazonaws.com/data/songs/${songName}.mp3`;
+        event.target.appendChild(audio);
+        return audio;
+    }
+
+    stopAudios(audioTag) {
+        let audio = document.querySelectorAll('#audio-player');
+        audio.forEach(audio => {
+            if (audioTag.src !== audio.src) {
+                audio.pause();
+                audio.currentTime = 0;
             }
         });
     }
 
-    stopAudio(audio) {
-        audio.pause();
-        audio.currentTime = 0;
+    playAudio(event) {
+        let audioTag = event.target.children[0];
+        if (!audioTag) {
+            audioTag = this.createAudioTag(event);
+        }
+        this.togglePlay(audioTag);
+        this.stopAudios(audioTag);
+        return true;
     }
 
-    cleanAudio(audio) {
-        const origin = audio.getAttribute('src');
-        let cleaned = origin.replace('./assets/songs/', '');
-        cleaned = cleaned.replace('.mp3', '');
-        return cleaned;
+    togglePlay(audio) {
+        return audio.paused ? audio.play() : audio.pause();
     }
 }

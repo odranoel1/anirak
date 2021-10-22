@@ -31,6 +31,6 @@ export default () => {
     relation.getRelationDate();
     relation.getPictures();
     TinySlider;
-    taskList.addTask();
-    taskList.actionTask();
+    taskList.listenInput();
+    taskList.listenTodo();
 }
