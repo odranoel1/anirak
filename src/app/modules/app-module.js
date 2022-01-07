@@ -26,10 +26,9 @@ export default () => {
     observer.about
     observer.footerimg
     registerForm.validateForm();
-    relation.getMonth();
-    relation.createMonth();
     relation.getRelationDate();
-    relation.getPictures();
+    relation.listenPicture();
+    relation.listenSendPicture();
     TinySlider;
     taskList.listenInput();
     taskList.listenTodo();

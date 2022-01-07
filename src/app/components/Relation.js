@@ -1,51 +1,46 @@
-import data from '../../assets/data.json';
+import { Month } from './Month';
+import { Picture } from './Picture';
 
 export class Relation {
 
     constructor() {
-        this.months = '';
-        this.relationStart = new Date('2021-06-12').getTime();
+        this.img = {};
+
+        this.newMonth = new Month();
+        this.newMonth.getMonths();
+
+        this.newPicture = new Picture();
+        this.newPicture.getPictures();
+    }
+
+    getSpanishDate(date) {
+        return new Date(date).toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
     }
 
     getRelationDate() {
         const rdate = document.querySelector('#RelationDate');
-        rdate.innerHTML = new Date('2021-06-13').toLocaleDateString("es-MX", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        rdate.innerHTML = this.getSpanishDate('06-12-21');
     }
 
-    getMonth() {
-        const today = new Date().getTime();
-        this.months = today - this.relationStart;
-        this.months = new Date(this.months).getMonth();
-        const relationTime = document.querySelector('#relationTime');
-        relationTime.innerHTML = this.months;
-    }
-
-    createMonth() {
-        const divMonth = document.querySelector('#Months .companies');
-        const { months } = data;
-        months.forEach((month, i) => {
-            const appendElement = `
-                <div class="item">
-                    <h3>Mes ${i + 1}</h3>
-                    <img src="${month.img}" alt="Chocorina" class="img-fluid">
-                    <p>${month.text}</p>
-                </div>
-            `;
-            divMonth.innerHTML += appendElement;
+    listenPicture() {
+        const pictureUploader = document.querySelector('#monthPicture');
+        pictureUploader.addEventListener('change', async (e) => {
+            this.newMonth.setMonth(e.target.files[0]);
+            this.newMonth.addMonthView(this.newMonth);
         });
     }
 
-    getPictures() {
-        const divCarousel = document.querySelector('#Main .swiper-wrapper');
-        const { slider } = data;
-        const images = slider.map(img => `https://anirak.s3.amazonaws.com/data/slider/${img}`);
-        images.forEach(img => {
-            const appendElement = `
-                <div class="swiper-slide">
-                    <img class="img-fluid" src="${img}" alt="Relationship">
-                </div>
-            `;
-            divCarousel.innerHTML += appendElement;
+    listenSendPicture() {
+        const inputUpload = document.querySelector('#uploadPicture');
+        inputUpload.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const newUrl = await this.newPicture.getUploadUrl({ img: this.newMonth });
+            const formatData = this.newPicture.getFormatUrl({
+                ...newUrl.fields,
+                'file': this.newMonth.file
+            });
+            await this.newPicture.uploadPicture(formatData, newUrl.url);
+            await this.newMonth.addMonth(this.newMonth);
         });
     }
 }

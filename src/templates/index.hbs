@@ -59,6 +59,14 @@
           Por los <b id="relationTime"></b> maravillosos meses que tenemos juntos<br>
           Y todos los que nos <b>esperan.</b></h2>
         <div class="companies"></div>
+        <form action="" class="row mt-5">
+          <div class="form-group col-sm-10 offset-sm-1 col-md-8 offset-md-2">
+            <input type="file" id="monthPicture" name="monthpicture" accept="image/png, image/jpeg">
+          </div>
+          <div class="form-group col-sm-12 text-center">
+            <input type="button" id="uploadPicture" class="btn btn-default" value="Subir foto!"></input>
+          </div>
+        </form>
       </div>
     </div>
 
@@ -81,10 +89,10 @@
       <div class="col-xs-12 col-lg-6">
         <div class="services">
           <div class="item">
-            <h3><b>Nuestra lista</b></h3>
-            <p>Aquí va nuestra historia</p>
+            <h3 class="text-center my-3"><b>Nuestra Agenda</b></h3>
+            {{!-- <p>Aquí va nuestra historia</p> --}}
             <div class="form-group">
-              <input type="text" class="form-control" id="new-task" placeholder="Agrega nuevo plan">
+              <input type="text" class="form-control" id="new-task" placeholder="Agrega nueva aventura!">
             </div>
             <ul id="todo-list"></ul>
           </div>
