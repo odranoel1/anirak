@@ -1,11 +1,12 @@
 import data from '../../assets/data.json';
-import axios from 'axios';
+import { editTask } from '../services/tasks';
+import { createUrl, uploadPicture } from '../services/pictures';
 
 export class Picture {
 
     constructor() {
-        this.uriFile = 'http://localhost:3000/dev/api/v1/file';
         this.uriPictures = 'https://anirak.s3.amazonaws.com/data/slider';
+        this.file = null;
     }
 
     getPictures() {
@@ -22,26 +23,51 @@ export class Picture {
         });
     }
 
-    getFormatUrl(fields) {
+    getFormatData(fields) {
         const formData = new FormData();
         formData.append('acl', 'public-read');
         Object.entries(fields).forEach(([key, value]) => {
-            console.log(key, value);
             formData.append(key, value);
         });
         return formData;
     }
 
-    async getUploadUrl(data) {
-        const res = await axios.post(this.uriFile, data);
-        return res.data.data;
+    listenAfterFile() {
+        const loadPicture = document.querySelector('#load-picture');
+        const sendFile = document.querySelector('#send-picture');
+        const imgPreview = document.querySelector('#img-preview');
+        loadPicture.addEventListener('change', e => {
+            sendFile.disabled = false;
+            this.file = e.target.files[0];
+            imgPreview.src = URL.createObjectURL(this.file);
+        });
     }
 
-    async uploadPicture(formData, url) {
-        const res = await axios.post(url, formData, {
-            headers: { 'Content-Type': 'multipart/form-data' }
+    listenSendFile() {
+        const sendFile = document.querySelector('#send-picture');
+        sendFile.disabled = true;
+        sendFile.addEventListener('click', async () => {
+            sendFile.disabled = true;
+            const task = JSON.parse(localStorage.getItem('task'));
+            const img = {
+                name: this.file.name,
+                mimeType: this.file.type
+            };
+            const newUrl = await createUrl({ img });
+            const formatData = this.getFormatData({
+                ...newUrl.fields,
+                'file': this.file
+            });
+            await uploadPicture(newUrl.url, formatData);
+            await editTask({
+                id: task.id,
+                desc: task.desc,
+                completed: task.completed,
+                createdAt: task.createdAt,
+                url: `https://anirak.s3.amazonaws.com/data/memories/${this.file.name}`
+            });
+            sendFile.disabled = false;
         });
-        return res.status === 204;
     }
 }
 

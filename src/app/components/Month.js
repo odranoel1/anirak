@@ -1,11 +1,9 @@
-import axios from 'axios';
+import { getMonths } from '../services/months';
 
 export class Month {
 
     constructor() {
         this.divMonth = document.querySelector('#Months .companies');
-        this.uriMonths = 'http://localhost:3000/dev/api/v1/month';
-
         this.file = '';
         this.title = '';
         this.name = '';
@@ -41,9 +39,9 @@ export class Month {
     }
 
     getMonths() {
-        axios.get(this.uriMonths)
+        getMonths()
             .then(res => {
-                this.months = res.data.data;
+                this.months = res.data;
                 this.months.forEach((month, i) => {
                     this.addMonthView({
                         title: i + 1,
@@ -66,11 +64,6 @@ export class Month {
             </div>
         `;
         this.divMonth.innerHTML += appendElement;
-    }
-
-    async addMonth(data) {
-        const res = await axios.post(this.uriMonths, data);
-        return res;
     }
 }
 

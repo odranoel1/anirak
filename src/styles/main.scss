@@ -133,14 +133,14 @@
 
 #Plans {
     .services {
-        display: flex;
-        justify-content: space-between;
+        // display: flex;
+        // justify-content: space-between;
         @media only screen and (max-width: $size_sm) {
             flex-direction: column;
             padding: 60px 0 0 0;
         }
         .item {
-            margin: auto;
+            // margin: auto;
             border-bottom: 4px solid $blueLight;
             border-radius: 10px;
             background-color: $white;
@@ -148,7 +148,7 @@
             height: auto;
             padding: 10px;
             position: relative;
-            width: 60%;
+            // width: 60%;
             margin-bottom: 3em;
             @media only screen and (max-width: $size_sm) {
                 width: 100%;
@@ -159,7 +159,7 @@
             }
             ul {
                 padding-left: 0;
-                max-height: 330px;
+                max-height: 430px;
                 overflow-y: scroll;
                 li {
                     border-radius: 8px;

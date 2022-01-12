@@ -24,8 +24,6 @@ const slider = tns({
     nav: false,
     controls: false,
     center: true,
-    // fixedWidth: 300,
-    // gutter: 300
     responsive: {
         768: {
             fixedWidth: 300,

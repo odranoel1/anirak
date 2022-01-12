@@ -23,7 +23,7 @@
 
     <div class="row" id="About">
       <div class="col-md-6 px-0">
-        <img src="" alt="Chocorina" class="img-fluid animateObserver" data-lazy="./assets/img/start.jpeg">
+        <img src="./assets/img/start.jpeg" alt="Chocorina" class="img-fluid">
       </div>
       <div class="col-md-6 box-light">
         <h2 class="title-default">Nuestro inicio
@@ -61,10 +61,10 @@
         <div class="companies"></div>
         <form action="" class="row mt-5">
           <div class="form-group col-sm-10 offset-sm-1 col-md-8 offset-md-2">
-            <input type="file" id="monthPicture" name="monthpicture" accept="image/png, image/jpeg">
+            <input type="file" id="load-picture-month" class="file-input">
           </div>
           <div class="form-group col-sm-12 text-center">
-            <input type="button" id="uploadPicture" class="btn btn-default" value="Subir foto!"></input>
+            <input type="button" id="send-picture-month" class="btn btn-default" value="Subir foto!"></input>
           </div>
         </form>
       </div>
@@ -86,11 +86,10 @@
     </div>
 
     <div class="row box-demon" id="Plans">
-      <div class="col-xs-12 col-lg-6">
+      <div class="col-lg-4 offset-lg-2">
         <div class="services">
           <div class="item">
-            <h3 class="text-center my-3"><b>Nuestra Agenda</b></h3>
-            {{!-- <p>Aquí va nuestra historia</p> --}}
+            <h3 class="text-center my-3"><b>Nuestros planes</b></h3>
             <div class="form-group">
               <input type="text" class="form-control" id="new-task" placeholder="Agrega nueva aventura!">
             </div>
@@ -98,10 +97,25 @@
           </div>
         </div>
       </div>
+      <div class="col-lg-4">
+        <div id="task-picture" class="card text-white bg-dark">
+          <div class="card-header text-center"></div>
+          <img src="" alt="" id="img-preview">
+          <input type="file" id="load-picture" class="file-input">
+          <input type="button" id="send-picture" class="btn btn-default mt-3 mb-2 mx-auto" value="Subir foto!">
+          <div class="card-body">
+            <p class="card-text">La felicidad de estar juntos</p>
+          </div>
+          <div class="card-footer"></div>
+        </div>
+      </div>
+    </div>
+
+    {{!-- <div class="row">
       <div class="col-xs-12 col-lg-6">
         {{> partials/slider }}
       </div>
-    </div>
+    </div> --}}
 
     {{!-- <div class="row" id="Contact">
       <div class="col-md-8 offset-md-2">

@@ -3,10 +3,11 @@ import { deleteTask, createTask, editTask } from '../../app/services/tasks';
 export class Task {
     constructor(obj) {
         this.id = obj.id ? obj.id : `${new Date().getTime()}`;
-        this.desc = obj.desc;
+        this.desc = obj.desc ? obj.desc : 'Sin texto';
         this.completed = obj.completed ? obj.completed : false;
         this.createdAt = obj.createdAt ? obj.createdAt : new Date().getTime();
         this.todoList = obj.todoList;
+        this.url = obj.url ? obj.url : '';
     }
 
     async createTask() {
@@ -17,6 +18,7 @@ export class Task {
             createdAt: this.createdAt,
         });
         if (res.success) {
+            this.id = res.data.insertedId;
             this.appendView();
         }
     }
@@ -29,6 +31,7 @@ export class Task {
             desc: this.desc,
             completed: this.completed,
             createdAt: this.createdAt,
+            url: this.url
         });
         if (res.success) {
             this.toggleIcon(classTarget);

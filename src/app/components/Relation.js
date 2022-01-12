@@ -1,16 +1,18 @@
+import { createMonth } from '../services/months';
+import { createUrl, uploadPicture } from '../services/pictures';
 import { Month } from './Month';
 import { Picture } from './Picture';
 
 export class Relation {
 
     constructor() {
-        this.img = {};
-
         this.newMonth = new Month();
         this.newMonth.getMonths();
 
         this.newPicture = new Picture();
         this.newPicture.getPictures();
+
+        this.inputSendPicture = document.querySelector('#send-picture-month');
     }
 
     getSpanishDate(date) {
@@ -23,24 +25,31 @@ export class Relation {
     }
 
     listenPicture() {
-        const pictureUploader = document.querySelector('#monthPicture');
-        pictureUploader.addEventListener('change', async (e) => {
+        const loadPicture = document.querySelector('#load-picture-month');
+        loadPicture.addEventListener('change', (e) => {
+            this.inputSendPicture.disabled = false;
             this.newMonth.setMonth(e.target.files[0]);
             this.newMonth.addMonthView(this.newMonth);
         });
     }
 
     listenSendPicture() {
-        const inputUpload = document.querySelector('#uploadPicture');
-        inputUpload.addEventListener('click', async (e) => {
+        this.inputSendPicture.disabled = true;
+        this.inputSendPicture.addEventListener('click', async (e) => {
             e.preventDefault();
-            const newUrl = await this.newPicture.getUploadUrl({ img: this.newMonth });
-            const formatData = this.newPicture.getFormatUrl({
+            this.inputSendPicture.disabled = true;
+            const img = {
+                name: this.newMonth.name,
+                mimeType: this.newMonth.mimeType
+            };
+            const newUrl = await createUrl({ img });
+            const formatData = this.newPicture.getFormatData({
                 ...newUrl.fields,
                 'file': this.newMonth.file
             });
-            await this.newPicture.uploadPicture(formatData, newUrl.url);
-            await this.newMonth.addMonth(this.newMonth);
+            await uploadPicture(newUrl.url, formatData);
+            await createMonth(this.newMonth);
+            this.inputSendPicture.disabled = false;
         });
     }
 }
