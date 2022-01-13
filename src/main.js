@@ -10,4 +10,4 @@ appModule();
 window.playSong = function (songName) {
   const song = new Song();
   song.playAudio(songName);
-}
+};

@@ -1,59 +1,66 @@
 import { Task } from "./Task";
-import { getTasks } from '../../app/services/tasks';
+import { getTask, getTasks } from '../../app/services/tasks';
 import { Picture } from "./Picture";
 
 export class TaskList {
     constructor() {
-        this.todoList = document.querySelector('#Plans .item #todo-list');
         this.fileLoader = null;
         this.picture = null;
+        this.tasks = [];
         getTasks().then(res => {
             this.tasks = res.data;
             const lastTaskAdded = this.tasks[0];
             lastTaskAdded.url = lastTaskAdded.url ? lastTaskAdded.url : '';
-            this.tasks.map(task => {
-                task.todoList = this.todoList;
+            Task.addPictureView(lastTaskAdded);
+            this.tasks.forEach(task => {
                 task.id = task._id;
                 const newTask = new Task(task);
                 newTask.appendView();
             });
-            this.addPictureView(lastTaskAdded);
         });
 
         this.newPicture = new Picture();
+    }
+
+    addLastTaskFirst(newTask) {
+        this.tasks.unshift(newTask);
+        const todoList = document.querySelector('#Plans .item #todo-list');
+        todoList.innerHTML = '';
+        this.tasks.forEach(task => {
+            task.id = task._id;
+            const newTask = new Task(task);
+            newTask.appendView();
+        });
     }
 
     listenInput() {
         const txtInput = document.querySelector('#new-task');
         txtInput.addEventListener('keyup', async (event) => {
             if (event.keyCode === 13 && txtInput.value.length > 0) {
-                const newTask = new Task({
-                    desc: txtInput.value,
-                    todoList: this.todoList
-                });
+                const newTask = new Task({ desc: txtInput.value });
                 await newTask.createTask();
                 txtInput.value = '';
-                this.tasks.push(newTask);
             }
         });
     }
 
     listenTodo() {
-        this.todoList.addEventListener('click', async (event) => {
-            getTasks().then(res => {
-                this.tasks = res.data;
-            });
+        const todoList = document.querySelector('#Plans .item #todo-list');
+        todoList.addEventListener('click', async (event) => {
+            // Assign Id
             const target = event.target;
             let taskId = target.getAttribute('data-id');
             if (target.classList.contains('fa-check') || target.classList.contains('fa-edit') || target.classList.contains('fa-trash')) {
                 taskId = target.parentElement.getAttribute('data-id');
             }
-            
-            let taskFounded = this.tasks.find(task => task.id === taskId);
-            taskFounded = new Task(taskFounded);
-            this.addPictureView(taskFounded);
+
+            const { data } = await getTask(taskId);
+            data.id = data._id;
+            const taskFounded = new Task(data);
+            Task.addPictureView(taskFounded);
             localStorage.setItem('task', JSON.stringify(taskFounded));
 
+            // Actions
             if (target.classList.contains('fa-check') || target.classList.contains('fa-edit')) {
                 await taskFounded.editTask(target, target.classList);
             }
@@ -64,18 +71,5 @@ export class TaskList {
                 taskPicture.classList.add('d-none');
             }
         });
-    }
-
-    addPictureView(taskFounded) {
-        const taskPicture = document.querySelector('#task-picture');
-        taskPicture.classList.remove('d-none');
-        taskPicture.childNodes[1].innerHTML = taskFounded.desc;
-        taskPicture.childNodes[11].innerHTML = this.getSpanishDate(taskFounded.createdAt);
-        taskPicture.childNodes[3].src = taskFounded.url;
-    }
-
-
-    getSpanishDate(date) {
-        return new Date(date).toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
     }
 }

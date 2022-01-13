@@ -19,7 +19,7 @@ export class Month {
         this.file = file;
         this.title = this.monthQty + 1;
         this.name = `${this.title}mes.${this.file.type.replace('image/', '')}`;
-        this.url = `https://anirak.s3.amazonaws.com/data/months/${this.title}mes.${this.file.type.replace('image/', '')}`;
+        this.url = `https://anirak.s3.amazonaws.com/data/memories/${this.title}mes.${this.file.type.replace('image/', '')}`;
         this.mimeType = this.file.type;
 
         // Calculate date for new month
@@ -30,7 +30,7 @@ export class Month {
     }
 
     getSpanishDate(date) {
-        return new Date(date).toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
+        return new Date(date).toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'short' });
     }
 
     getMonthQty() {

@@ -2,20 +2,20 @@ import { deleteTask, createTask, editTask } from '../../app/services/tasks';
 
 export class Task {
     constructor(obj) {
-        this.id = obj.id ? obj.id : `${new Date().getTime()}`;
+        this.id = obj.id ? obj.id : '';
         this.desc = obj.desc ? obj.desc : 'Sin texto';
         this.completed = obj.completed ? obj.completed : false;
         this.createdAt = obj.createdAt ? obj.createdAt : new Date().getTime();
-        this.todoList = obj.todoList;
+        this.todoList = document.querySelector('#Plans .item #todo-list');
         this.url = obj.url ? obj.url : '';
     }
 
     async createTask() {
         const res = await createTask({
-            id: this.id,
             desc: this.desc,
             completed: this.completed,
             createdAt: this.createdAt,
+            url: this.url
         });
         if (res.success) {
             this.id = res.data.insertedId;
@@ -64,6 +64,14 @@ export class Task {
         this.todoList.removeChild(liElement);
     }
 
+    static addPictureView(task = null) {
+        const taskPicture = document.querySelector('#task-picture');
+        taskPicture.classList.remove('d-none');
+        taskPicture.childNodes[1].innerHTML = task.desc;
+        taskPicture.childNodes[11].innerHTML = new Date(task.createdAt).toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
+        taskPicture.childNodes[3].src = task.url;
+    }
+
     toggleIcon(classTarget) {
         if (classTarget.value.includes('fa-check')) {
             classTarget.remove('fa-check');
@@ -75,5 +83,9 @@ export class Task {
             classTarget.add('fa-check');
             return true;
         }
+    }
+
+    getSpanishDate(date) {
+        return new Date(date).toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
     }
 }

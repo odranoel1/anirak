@@ -1,7 +1,7 @@
 import axios from "axios";
+import { apiURL } from "../config/keys";
 
-const endpoint = 'https://3tpkvl68v9.execute-api.us-east-1.amazonaws.com/dev/api/v1/file';
-// const endpoint = 'http://localhost:3000/dev/api/v1/file';
+const endpoint = `${apiURL}/file`;
 
 export const createUrl = async (data) => {
     const res = await axios.post(endpoint, data);

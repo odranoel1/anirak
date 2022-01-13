@@ -10,17 +10,17 @@ export class Picture {
     }
 
     getPictures() {
-        const divCarousel = document.querySelector('#Main .swiper-wrapper');
-        const { slider } = data;
-        const images = slider.map(img => `${this.uriPictures}/${img}`);
-        images.forEach(img => {
-            const appendElement = `
-                <div class="swiper-slide">
-                    <img class="img-fluid" src="${img}" alt="Relationship">
-                </div>
-            `;
-            divCarousel.innerHTML += appendElement;
-        });
+        // const divCarousel = document.querySelector('#Main .swiper-wrapper');
+        // const { slider } = data;
+        // const images = slider.map(img => `${this.uriPictures}/${img}`);
+        // images.forEach(img => {
+        //     const appendElement = `
+        //         <div class="swiper-slide">
+        //             <img class="img-fluid" src="${img}" alt="Relationship">
+        //         </div>
+        //     `;
+        //     divCarousel.innerHTML += appendElement;
+        // });
     }
 
     getFormatData(fields) {

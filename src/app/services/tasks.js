@@ -1,7 +1,7 @@
 import axios from "axios";
+import { apiURL } from "../config/keys";
 
-const endpoint = 'https://3tpkvl68v9.execute-api.us-east-1.amazonaws.com/dev/api/v1/task';
-// const endpoint = 'http://localhost:3000/dev/api/v1/task';
+const endpoint = `${apiURL}/task`;
 
 export const createTask = async (task) => {
     const res = await axios.post(endpoint, JSON.stringify(task));
@@ -20,5 +20,10 @@ export const getTasks = async () => {
 
 export const deleteTask = async (taskId) => {
     const res = await axios.delete(`${endpoint}/${taskId}`);
+    return res.data;
+};
+
+export const getTask = async (taskId) => {
+    const res = await axios.get(`${endpoint}/${taskId}`);
     return res.data;
 };
